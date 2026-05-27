@@ -1,9 +1,10 @@
+import os
 import re
 from urllib.parse import urlparse
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filters
 
-TOKEN = "8489240122:AAEm3SddazltWwhe0JejNOHnwBQb4dMP_rI"
+TOKEN = os.environ.get("BOT_TOKEN")
 
 
 def clean_domain(url):
