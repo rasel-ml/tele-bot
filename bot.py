@@ -4,9 +4,6 @@ from urllib.parse import urlparse
 from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filters
 
-TOKEN = os.environ.get("BOT_TOKEN")
-
-
 def clean_domain(url):
     try:
         domain = urlparse(url).netloc.lower()
@@ -70,9 +67,7 @@ async def handle_channel_post(update: Update, context: ContextTypes.DEFAULT_TYPE
         print("Edit failed:", e)
 
 
-app = ApplicationBuilder().token(TOKEN).build()
-
+app = ApplicationBuilder().token(os.environ.get("BOT_TOKEN")).build()
 app.add_handler(MessageHandler(filters.UpdateType.CHANNEL_POST, handle_channel_post))
-
 print("Bot running...")
 app.run_polling()
